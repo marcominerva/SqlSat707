@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XamarinApp">
+
+    <Grid Padding="5,20,5,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Entry
+            x:Name="QueryTextBox"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Query..." />
+        <Button
+            x:Name="FindPlacesButton"
+            Grid.Row="0"
+            Grid.Column="1"
+            Clicked="FindPlacesButton_Clicked"
+            Text="Find Places" />
+
+        <ListView
+            x:Name="PlacesListView"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                Source="{Binding ImageUrl}"
+                                VerticalOptions="Start"
+                                WidthRequest="100" />
+                            <StackLayout Grid.Column="1" Orientation="Vertical">
+                                <Label FontAttributes="Bold" Text="{Binding Name}" />
+                                <Label Text="{Binding Description}" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
